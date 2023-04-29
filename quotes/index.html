@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="main">
+    <div id="quotes"></div>
+    <div id="author"></div>
+    <button id="button" onclick="getquotes()">NEXT</button>
+    </div>
+    <script>
+
+        const realdata=""
+      const quotes=document.getElementById("quotes")
+      const author=document.getElementById("author")
+      const main=document.getElementsByClassName("main")
+ 
+ 
+     const getquotes= async()=>{
+      let arr=["#cd3232","#cd5932","#cd32cd","#3259cd","#3259cd","#59cd32","00FFFF",
+      "008B8B","1E90FF",'#9ACD32', '#EE82EE','#D8BFD8','#D2B48C','#4682B4','#708090','#FFF5EE', '#FA8072','#BC8F8F', '#663399',
+      '#B0E0E6','#CD853F', '#EEE8AA','#FF4500', '#6B8E23', '#6B8E23', '#FFE4B5','#48D1CC', '#3CB371', '#778899','#90EE90', '#FAFAD2','#ADD8E6', '#7CFC00','#ADFF2F', '#808080', '#DCDCDC']
+          let i=0
+    
+            const api="https://type.fit/api/quotes"
+            try{
+                let data=await fetch(api)
+                  let realdata=await data.json()
+                
+                let no=Math.floor(Math.random()*20)
+                
+                  quotes.innerText= `#  ${realdata[no].text}`
+                  realdata[no].author ===null?(author.innerText="** unknow **"):(author.innerText=`#  ${realdata[no].author}`)
+            
+                  let a=Math.floor(Math.random()*arr.length)
+                   main[0].style.backgroundColor=arr[a]
+                  
+ 
+              
+                  
+            }
+            catch(error){
+                  console.log(error)
+            }
+
+        }
+getquotes()
+    </script>
+</body>
+</html>
